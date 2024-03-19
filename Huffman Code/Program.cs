@@ -46,12 +46,11 @@ class Program
 
                 foreach (var character in InitalText)
                 {
-                    FinalCode.Append(dict[character]);
+                    FinalCode.Append($"{Convert.ToInt32(dict[character] , 2)} ");
                 }
 
                 File.Delete("C:\\Users\\iskos\\RiderProjects\\HuffmanCode\\Huffman Code\\code.txt");
-                File.AppendAllText("C:\\Users\\iskos\\RiderProjects\\HuffmanCode\\Huffman Code\\code.txt",
-                    FinalCode.ToString());
+                File.AppendAllText("C:\\Users\\iskos\\RiderProjects\\HuffmanCode\\Huffman Code\\code.txt", FinalCode.ToString());
             }
 
             else if (choice == "read")
@@ -75,7 +74,7 @@ class Program
                         }
 
                         var r = row.Split(" : ");
-                        DeCode[r[1]] = r[0];
+                        DeCode[r[2]] = r[0];
                         continue;
                     }
 
@@ -85,15 +84,17 @@ class Program
                         {
                             result.Append(DeCode[temporary.ToString()]);
                             previous = false;
-                            temporary.Clear().Append(character);
+                            temporary.Clear().Append(character) ;
                         }
                         else
                         {
-                            temporary.Append(character);
-                            if (DeCode.TryGetValue(temporary.ToString(), out var c))
+                            
+                            if (character == ' ')
                             {
                                 previous = true;
+                                continue;
                             }
+                            temporary.Append(character);
                         }
                     }
                 }

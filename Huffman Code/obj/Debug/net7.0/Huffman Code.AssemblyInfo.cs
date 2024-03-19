@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Huffman Code")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0659db25a5e14a742d92747b3bf66d9445531bbe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9cfd3573ea890c4ea807c1749a381b2f3ec4d7f4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Huffman Code")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Huffman Code")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

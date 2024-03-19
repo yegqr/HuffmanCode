@@ -41,7 +41,7 @@ namespace Huffman_Code
 
             if (_character != '\0' ) 
             {
-                dict[_character] = _num.ToString();
+                dict[_character] = $"1{_num}";
             }
             return dict;
         }
