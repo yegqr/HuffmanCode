@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\iskos\\RiderProjects\\Huffman Code\\Huffman Code\\Huffman Code.csproj",
+      "projectUniqueName": "C:\\Users\\iskos\\RiderProjects\\HuffmanCode\\Huffman Code\\Huffman Code.csproj",
       "projectName": "Huffman Code",
-      "projectPath": "C:\\Users\\iskos\\RiderProjects\\Huffman Code\\Huffman Code\\Huffman Code.csproj",
+      "projectPath": "C:\\Users\\iskos\\RiderProjects\\HuffmanCode\\Huffman Code\\Huffman Code.csproj",
       "packagesPath": "C:\\Users\\iskos\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\iskos\\RiderProjects\\Huffman Code\\Huffman Code\\obj\\",
+      "outputPath": "C:\\Users\\iskos\\RiderProjects\\HuffmanCode\\Huffman Code\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iskos\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -30,7 +30,7 @@ public class MinHeap
 
         if (_pointer >= _size / 2)
         {
-            _size *= 4 ;
+            _size *= 2 ;
             Array.Resize( ref _array, _size ) ;
         }
     }
