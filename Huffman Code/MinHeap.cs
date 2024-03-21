@@ -1,89 +1,81 @@
-﻿namespace Huffman_Code;
+﻿using System;
 
-public class MinHeap
+namespace Huffman_Code
 {
-    private int _size ;
-    private int _pointer ;
-    private int _len ;
-    private Tuple<HuffmanTree ,int >[] _array ;
+    public class MinHeap
+    {
+        private int _size;
+        private int _len;
+        private Tuple<HuffmanTree, int>[] _array;
 
-    public MinHeap()
-    {
-        _size = 16 ;
-        _pointer = -1 ; 
-        _array = new Tuple<HuffmanTree, int>[_size];
-    }
-    
-    public void Enqueue( HuffmanTree tree , int priority )
-    {
-        _len++;
-        _pointer += 1 ;
-        _array[_pointer] = Tuple.Create(tree , priority) ;
-        var pointerToSwap = _pointer ;
-        var parent = ( int )Math.Round( ( double )pointerToSwap - 1 ) / 2 ;
-        while ( pointerToSwap > 0 &&_array[ pointerToSwap ].Item2 >= _array[ parent ].Item2 )
+        public MinHeap()
         {
-            ( _array[ pointerToSwap ] , _array[ parent ] ) = ( _array[ parent ] , _array[ pointerToSwap ] ) ;
-            pointerToSwap = ( int )Math.Round( ( double )pointerToSwap - 1 ) / 2 ;
-            if ( pointerToSwap <= 0 ) { break ; }
+            _size = 16;
+            _len = 0;
+            _array = new Tuple<HuffmanTree, int>[_size];
         }
 
-        if (_pointer >= _size / 2)
+        public void Enqueue(HuffmanTree tree, int priority)
         {
-            _size *= 2 ;
-            Array.Resize( ref _array, _size ) ;
-        }
-    }
-
-    public HuffmanTree Dequeue()
-    {
-        _len--;
-        var ToReturn = _array[0];
-        if (_pointer == -1)
-        {
-            return ToReturn.Item1 ;
-        }
-        
-        _array[0] = _array[_pointer];
-        _pointer-- ;
-        
-        var parent = 0 ;
-        while (true)
-        {
-            int smallestChild = parent;
-            int leftChild = 2 * smallestChild + 1;
-            int rightChild = 2 * smallestChild + 2;
-
-
-            if (leftChild <= _pointer &&
-                _array[leftChild].Item2 > _array[smallestChild].Item2)
+            _len++;
+            int pointerToSwap = _len - 1;
+            _array[pointerToSwap] = Tuple.Create(tree, priority);
+            while (pointerToSwap > 0 && _array[pointerToSwap].Item2 < _array[(pointerToSwap - 1) / 2].Item2)
             {
-                smallestChild = rightChild;
+                ( _array[pointerToSwap], _array[(pointerToSwap - 1) / 2]) = ( _array[(pointerToSwap - 1) / 2], _array[pointerToSwap]);
+                pointerToSwap = (pointerToSwap - 1) / 2;
             }
 
-            if (rightChild <= _pointer && _array[rightChild].Item2 >
-                _array[smallestChild].Item2)
+            if (_len >= _size)
             {
-                smallestChild = leftChild;
-            }
-
-            if (smallestChild != parent)
-            {
-                (_array[parent], _array[smallestChild]) = (_array[smallestChild], _array[parent]);
-
-                parent = smallestChild;
-            }
-            else
-            {
-                break;
+                _size *= 2;
+                Array.Resize(ref _array, _size);
             }
         }
 
-        return ToReturn.Item1 ;
-    }
+        public HuffmanTree Dequeue()
+        {
+            if (_len == 0)
+                throw new InvalidOperationException("Heap is empty");
 
-    public int Count()
-    {
-        return _len;
+            HuffmanTree toReturn = _array[0].Item1;
+            _len--;
+            _array[0] = _array[_len];
+            int parent = 0;
+
+            while (true)
+            {
+                int smallestChild = parent;
+                int leftChild = 2 * parent + 1;
+                int rightChild = 2 * parent + 2;
+
+                if (leftChild < _len && _array[leftChild].Item2 < _array[smallestChild].Item2)
+                {
+                    smallestChild = leftChild;
+                }
+
+                if (rightChild < _len && _array[rightChild].Item2 < _array[smallestChild].Item2)
+                {
+                    smallestChild = rightChild;
+                }
+
+                if (smallestChild != parent)
+                {
+                    ( _array[parent], _array[smallestChild]) = ( _array[smallestChild], _array[parent]);
+                    parent = smallestChild;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return toReturn;
+        }
+
+        public int Count()
+        {
+            return _len;
+        }
     }
 }
